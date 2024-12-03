@@ -45,7 +45,7 @@ describe("questions", () => {
     });
 
     // Update the question
-    await t.mutation(api.questions.update, {
+    await t.mutation(api.questions.setAll, {
       questionId,
       question: {
         question: "How much does the process cost, exactly?",

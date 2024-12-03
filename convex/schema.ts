@@ -32,6 +32,10 @@ const questions = defineTable({
   question: v.string(),
   /** The rich text answer to the question, stored as HTML. */
   answer: v.string(),
+  /** The user who created the question. */
+  createdBy: v.optional(v.id("users")),
+  /** Time in ms since epoch that the question was updated. */
+  updatedAt: v.optional(v.number()),
   /** One or more topics related to the question. */
   topics: v.array(v.id("topics")),
   /** Optional quests related to the question. */

@@ -8,24 +8,37 @@ export const getAll = query({
   },
 });
 
+export const getById = query({
+  args: { questionId: v.id("questions") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.questionId);
+  },
+});
+
 export const create = mutation({
   args: {
     question: v.string(),
     answer: v.string(),
+    createdBy: v.optional(v.id("users")),
     topics: v.array(v.id("topics")),
     relatedQuests: v.optional(v.array(v.id("quests"))),
   },
-  handler: async (ctx, { question, answer, topics, relatedQuests }) => {
+  handler: async (
+    ctx,
+    { question, answer, createdBy, topics, relatedQuests },
+  ) => {
     return await ctx.db.insert("questions", {
       question,
       answer,
+      createdBy,
+      updatedAt: Date.now(),
       topics,
       relatedQuests,
     });
   },
 });
 
-export const update = mutation({
+export const setAll = mutation({
   args: {
     questionId: v.id("questions"),
     question: v.object({

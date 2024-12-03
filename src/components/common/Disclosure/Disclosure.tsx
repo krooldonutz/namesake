@@ -24,23 +24,20 @@ export function Disclosure({ title, children, ...props }: DisclosureProps) {
     <AriaDisclosure className={twMerge("group")} {...props}>
       <Header>
         <Button
+          type="button"
           variant="ghost"
-          className="w-full justify-start"
+          className="flex w-full justify-between whitespace-normal text-pretty text-left h-auto text-base"
           slot="trigger"
-          size="small"
         >
+          {title}
           <ChevronRight
             size={16}
-            className={twMerge(
-              "transition-transform opacity-60",
-              "group-data-[expanded]:rotate-90",
-            )}
+            className="shrink-0 transition-transform opacity-60 group-data-[expanded]:rotate-90"
           />
-          {title}
         </Button>
       </Header>
       <AnimateChangeInHeight className="w-full">
-        <AriaDisclosurePanel className="group-data-[expanded]:pb-2">
+        <AriaDisclosurePanel className="px-3 group-data-[expanded]:pt-1 group-data-[expanded]:pb-3">
           {children}
         </AriaDisclosurePanel>
       </AnimateChangeInHeight>

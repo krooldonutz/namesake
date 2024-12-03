@@ -27,5 +27,6 @@
   "javascript.experimental.updateImportsOnPaste": true,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.tabSize": 2
 }

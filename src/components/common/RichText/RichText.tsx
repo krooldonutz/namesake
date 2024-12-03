@@ -49,22 +49,19 @@ export function RichText({
     base: "w-full",
     variants: {
       editable: {
-        true: "border border-gray-dim flex flex-col rounded-xl [&_.tiptap]:p-4 [&_.tiptap]:outline-none",
+        true: "border border-gray-dim flex flex-col rounded-xl [&_.tiptap]:p-3 [&_.tiptap]:outline-none",
       },
     },
   });
 
   return (
     <div className={styles({ editable })}>
-      <EditorContent
-        editor={editor}
-        className={twMerge("w-full prose dark:prose-invert", className)}
-      />
+      <EditorContent editor={editor} className={twMerge("w-full", className)} />
       {editable && (
         <>
           <BubbleMenu
             editor={editor}
-            className="bg-gray-1 dark:bg-graydark-2 p-1.5 rounded-xl shadow-md flex gap-1 items-center"
+            className="bg-gray-1 dark:bg-graydark-2 p-1.5 rounded shadow-md flex gap-1 items-center"
           >
             <ToggleButton
               onPress={() => editor.chain().focus().toggleBold().run()}

@@ -57,7 +57,7 @@ function QuestDetailRoute() {
   };
 
   // TODO: Improve loading state to prevent flash of empty
-  if (quest === undefined || userQuest === undefined) return;
+  if (quest === undefined || userQuest === undefined) return <></>;
   if (quest === null || userQuest === null)
     return <Empty title="Quest not found" icon={Milestone} />;
 

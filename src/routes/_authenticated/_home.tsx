@@ -12,6 +12,7 @@ import {
   Tooltip,
   TooltipTrigger,
 } from "@/components/common";
+import { HelpSidebar } from "@/components/help";
 import { StatusBadge } from "@/components/quests";
 import { api } from "@convex/_generated/api";
 import {
@@ -38,6 +39,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { Selection } from "react-aria-components";
+import { tv } from "tailwind-variants";
 
 const GROUP_OPTIONS: Record<
   GroupQuestsBy,
@@ -86,6 +88,7 @@ function sortGroupedQuests(
 }
 
 function IndexRoute() {
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [groupBy, setGroupBy] = useState<Selection>(
     new Set([localStorage.getItem("groupQuestsBy") ?? "category"]),
   );
@@ -218,10 +221,20 @@ function IndexRoute() {
     );
   };
 
+  const containerStyles = tv({
+    base: "flex relative justify-between",
+    variants: {
+      isHelpOpen: {
+        true: "w-[1600px]",
+      },
+    },
+  });
+
   return (
-    <Container className="flex">
+    <Container className={containerStyles({ isHelpOpen })}>
       <MyQuests />
       <Outlet />
+      <HelpSidebar open={isHelpOpen} onOpenChange={setIsHelpOpen} />
     </Container>
   );
 }
